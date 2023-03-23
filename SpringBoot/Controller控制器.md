@@ -6,11 +6,19 @@
 
 ## 需求
 
-发送请求`/user`，对应返回内容为：`用户名：张三，年龄：18`。
+浏览器发送请求`/user`，对应返回内容为：`用户名：张三，年龄：18`。
 
-## 步骤
+### 分析
 
-### 1. 创建controller包
+1. 浏览器发送请求路径，页面显示内容   --->   请求为`GET`请求。
+
+2. 对应请求只有路径，没有参数。
+
+3. 请求返回值是`String`的字段。
+
+### 步骤
+
+#### 1. 创建controller包
 
 启动类`Application`所在的`top.testeru.mini`包下创建名称为
 **`controller`** 的包。
@@ -18,26 +26,26 @@
 
 ![](https://cdn.jsdelivr.net/gh/TesterDevSoul/blog_pic/springboot/20230321160629.png)
 
-### 2. 创建User控制类
+#### 2. 创建User控制类
 
 在`controller`包下创建一个请求处理控制类`UserController`。
 
 ![](https://cdn.jsdelivr.net/gh/TesterDevSoul/blog_pic/springboot/20230321160939.png)
 
 
-### 3. 编写GET请求处理方法
+#### 3. 编写GET请求处理方法
 
-[GET请求](GET请求-无参&String返回值.md.md)
+[无参数传入并且返回值类型为String的GET请求。](GET请求-无参&String返回值.md)
 
 
-### 4. 运行项目 
+#### 4. 运行项目 
 
 运行主程序启动类`MiniApplication`，项目启动成功后，在控制台上会发现 `Spring Boot` 项目默认启动的端口号为 `8080`。
 
 ![](https://cdn.jsdelivr.net/gh/TesterDevSoul/blog_pic/springboot/20230321162216.png)
 
 
-### 5. 浏览器访问 
+#### 5. 浏览器验证
 
 浏览器上访问 [http://127.0.0.1:8080/user](http://127.0.0.1:8080/user)。
 
