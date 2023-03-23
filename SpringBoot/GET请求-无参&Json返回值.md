@@ -1,4 +1,4 @@
-# GET请求 - 无参&Json返回值
+# GET请求 - 没有参数并且返回值类型为Json
 
 ## Json返回值优点
 
@@ -40,14 +40,13 @@ JSON 格式在浏览器端具有天然的支持，可以使用 JavaScript 对 JS
 
 ### Map返回类型
 
-Map示例代码：
-
+##### 请求编写验证
 
 ```java
 @GetMapping(path = "/user",
                 value = "/user",
                 produces = MediaType.APPLICATION_JSON_VALUE)
-public HashMap<String, Object> get5(){
+public HashMap<String, Object> get(){
     HashMap<String, Object> userMap = new HashMap<>(){{
         put("name","张三");
         put("age",18);
@@ -58,11 +57,11 @@ public HashMap<String, Object> get5(){
 
 #### 缺点
 
-HashMap 作为 JSON 返回值的缺点主要有以下几个方面：
+`HashMap` 作为 `JSON` 返回值的缺点主要有以下几个方面：
 
 ##### 可读性差
 
-HashMap 返回值的键值对格式并不像 JSON 那样易于理解和阅读。
+`HashMap` 返回值的键值对格式并不像 `JSON` 那样易于理解和阅读。
 
 这对于其他开发人员或客户端来说可能会造成困惑和难以维护。
 
@@ -74,7 +73,7 @@ HashMap 返回值的结构不像 JSON 那样严格，不支持嵌套和数组等
 
 ##### 安全性问题
 
-将 HashMap 直接作为 JSON 返回值可能会泄露一些敏感信息。
+将 `HashMap` 直接作为 `JSON` 返回值可能会泄露一些敏感信息。
 
 比如 `HashMap` 中可能会包含一些数据库连接信息或密码等敏感信息，这些信息如果直接返回可能会存在安全风险。
 
