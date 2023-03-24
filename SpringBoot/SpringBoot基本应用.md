@@ -59,7 +59,7 @@
 
 ### 解决方案
 
-需要更改SpringBoot项目的默认启动端口号，比如修改为8888。
+需要更改`SpringBoot`项目的默认启动端口号，比如修改为**8888**。
 
 ### 实现过程
 
@@ -78,15 +78,41 @@ server.port=8888
 
 ### 解决方案
 
-可以返回Map类型数据，但是如果key太多，需要每个返回都要写put，并且key值不能出错。
+可以返回`Map`类型数据，但是如果`key`太多，需要每个返回都要写`put`，并且`key`值不能出错。
 
-最优解决方案：创建返回的**实体类**，对应请求注解内标明返回值类型为Json类型。
+最优解决方案：创建返回的**实体类**，对应请求注解内标明返回值类型为`Json`类型。
 
 
 ### 实现过程
 
 [没有参数传入的GET请求，设置返回值类型为Json类型。](GET请求-无参&Json返回值.md)
 
+实体类声明：
+
+```java
+package top.testeru.mini.entity;
+
+@Getter//getter方法
+@Setter//setter方法
+@ToString//tostring方法
+public class UserDTO {
+    private String name;
+    private Integer age;
+}
+```
+请求方法声明：
+
+```java
+@GetMapping(path = "/user6",
+        value = "/user6",
+        produces = MediaType.APPLICATION_JSON_VALUE)
+public UserDTO get6(){
+    UserDTO user = new UserDTO();
+    user.setName("张三");
+    user.setAge(18);
+    return user;
+}
+```
 
 ## 需求V1.1：根据不同姓名显示对应用户信息
 
@@ -108,7 +134,33 @@ server.port=8888
 
 [有一个类型为基本数据类型或String的参数传入的GET请求。](GET请求-有参&实体类返回值.md)
 
+```java
+// http://127.0.0.1:8080/user11/张三
+@GetMapping(path = "/user11/{name}", value = "/user11/{name}",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+public UserDTO get11(@PathVariable String name){
+    List<UserDTO> userList = getUsers();
+    UserDTO user3 = userList
+            .stream()
+            .filter(user -> name.equals(user.getName()))
+            .toList()
+            .get(0);
+    return user3;
+}
 
+
+// http://localhost:8080/user?name={uname}
+@GetMapping(path = "/user13")
+public UserDTO get13(@RequestParam String name){
+    List<UserDTO> userList = getUsers();
+    UserDTO user3 = userList
+            .stream()
+            .filter(user -> name.equals(user.getName()))
+            .toList()
+            .get(0);
+    return user3;
+}
+```
 
 
 ## 需求V1.2：增加用户信息
@@ -126,7 +178,16 @@ server.port=8888
 
 ### 实现过程
 
-[编写POST请求](POST请求-有参多个&实体类返回值.md)。
+[编写POST请求](POST请求-body&实体类返回值.md)。
+
+```java
+@PostMapping("/add")
+public String add(@RequestBody UserDTO user) {
+    userList.add(user);
+    System.out.println(userList);
+    return "ok";
+}
+```
 
 
 ## 需求V1.3：修改用户信息
@@ -149,7 +210,7 @@ server.port=8888
 
 ### 实现过程
 
-[编写POST请求](POST请求-有参&实体类返回值.md)。
+[编写POST请求](POST请求-body&实体类返回值.md)。
 
 
 ## 优化：业务逻辑拆分
