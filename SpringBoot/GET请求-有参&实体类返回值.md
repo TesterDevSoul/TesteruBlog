@@ -61,9 +61,11 @@ https://example.com/profile?name=John&age=30
 
 ##### 语法
 
+请求路径：`/请求路径/{方法参数1}/请求路径2/{方法参数2}`。
+
 ```java
-@GetMapping("/请求路径/{请求参数}")
-public 返回实体类 get11(@PathVariable(value = "请求参数", required =false)  请求参数类型{String/int} 请求参数){...}
+@GetMapping("/请求路径/{请求参数1}/请求路径2/{请求参数2}")
+public 返回实体类 get11(@PathVariable(value = "请求参数1", required =false)String 方法参数1, @PathVariable(value = "请求参数2", required =false)int 方法参数2){...}
 ```
 
 例如，假设我们有一个处理`HTTP GET`请求的控制器方法，`URL`为`/users/{id}`，其中`{id}`是一个**动态变量**，表示用户的唯一标识符。
@@ -72,7 +74,7 @@ public 返回实体类 get11(@PathVariable(value = "请求参数", required =fal
 
 ```java
 @GetMapping("/users/{id}")
-public User getUserById(@PathVariable(value = "id", required =false) Long uid) {...}
+public UserDTO getUserById(@PathVariable(value = "id", required =false) Long uid) {...}
 ```
 
 >`@PathVariable`注解将`URL`中的路径变量`id`与`getUserById()`方法的参数`Long uid`绑定起来，以便可以在方法中使用该值。
@@ -148,9 +150,12 @@ public String getOrderDetails(@PathVariable Long userId, @PathVariable Long orde
 
 ##### 语法
 
+请求路径：`/请求路径?参数名1=方法参数值1&参数名2=方法参数值2`。
+
 ```java
 @GetMapping("/请求路径")
-public 返回实体类 get12(@RequestParam(value = "参数名", required = true/false, defaultValue = "默认值") 请求参数类型{String/int} 方法参数){...}
+public UserDTO get12(@RequestParam(value = "参数名1", required = true/false, defaultValue = "默认值") Long 方法参数1,
+@RequestParam(value = "参数名2", required = true/false, defaultValue = "默认值") String 方法参数2){...}
 ```
 
 ##### value属性
@@ -200,10 +205,10 @@ public class MyController {
 ```java
 @GetMapping(path = "/user10/{name}", value = "/user10/{name}",
         produces = MediaType.APPLICATION_JSON_VALUE)
-public User get10(@PathVariable("name") String userName){
+public UserDTO get10(@PathVariable("name") String userName){
     System.out.println(userName);
-    List<User> userList = getUsers();
-    User user3 = userList
+    List<UserDTO> userList = getUsers();
+    UserDTO user3 = userList
                     .stream()
                     .filter(user -> userName.equals(user.getName()))
                     .toList()
@@ -217,9 +222,9 @@ public User get10(@PathVariable("name") String userName){
 ```java
 @GetMapping(path = "/user11/{name}", value = "/user11/{name}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-public User get11(@PathVariable String name){
-    List<User> userList = getUsers();
-    User user3 = userList
+public UserDTO get11(@PathVariable String name){
+    List<UserDTO> userList = getUsers();
+    UserDTO user3 = userList
             .stream()
             .filter(user -> name.equals(user.getName()))
             .toList()
@@ -244,9 +249,9 @@ public User get11(@PathVariable String name){
 
 ```java
 @GetMapping(path = "/user12")
-public User get12(@RequestParam("name") String uname){
-    List<User> userList = getUsers();
-    User user3 = userList
+public UserDTO get12(@RequestParam("name") String uname){
+    List<UserDTO> userList = getUsers();
+    UserDTO user3 = userList
                     .stream()
                     .filter(user -> uname.equals(user.getName()))
                     .toList()
@@ -259,9 +264,9 @@ public User get12(@RequestParam("name") String uname){
 
 ```java
 @GetMapping(path = "/user13")
-public User get13(@RequestParam String name){
-    List<User> userList = getUsers();
-    User user3 = userList
+public UserDTO get13(@RequestParam String name){
+    List<UserDTO> userList = getUsers();
+    UserDTO user3 = userList
             .stream()
             .filter(user -> name.equals(user.getName()))
             .toList()

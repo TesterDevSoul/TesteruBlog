@@ -1,4 +1,4 @@
-# POST请求-有多个参数并且返回值类型为实体类
+# POST请求-有Body参数并且返回值类型为实体类
 
 ## POST请求应用场景
 
@@ -26,7 +26,7 @@ POST请求通常用于向服务器提交数据，例如在Web应用程序中向�
 
 总之，POST请求通常用于**向服务器提交数据并进行某些操作**。
 
-## 需求
+## 需求：只有body参数
 
 添加用户信息，请求路径为`/add`，用户信息为：`用户名：新增名，年龄：66`。
 
@@ -43,6 +43,25 @@ POST请求通常用于向服务器提交数据，例如在Web应用程序中向�
 
 ### 步骤
 
+添加用户，直接实体类作为对象。
+
+```java
+@PostMapping("/add")
+public String add(@RequestBody UserDTO user) {
+    userList.add(user);
+    System.out.println(userList);
+    return "ok";
+}
+```
+
+postman验证：
+
+![](https://cdn.jsdelivr.net/gh/TesterDevSoul/blog_pic/springboot/20230323183228.png)
 
 
 
+
+## 需求：body参数&路径参数
+
+
+## 需求：body参数&路径参数&查询参数

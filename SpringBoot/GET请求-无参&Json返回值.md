@@ -100,7 +100,7 @@ package top.testeru.mini.entity;
 @Getter//getter方法
 @Setter//setter方法
 @ToString//tostring方法
-public class User {
+public class UserDTO {
     private String name;
     private Integer age;
 }
@@ -112,8 +112,8 @@ public class User {
 @GetMapping(path = "/user6",
         value = "/user6",
         produces = MediaType.APPLICATION_JSON_VALUE)
-public User get6(){
-    User user = new User();
+public UserDTO get6(){
+    UserDTO user = new UserDTO();
     user.setName("张三");
     user.setAge(18);
     return user;

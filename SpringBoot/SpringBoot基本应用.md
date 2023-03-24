@@ -24,12 +24,13 @@
 1. 创建`Spring Boot`工程项目。
 
 2. `pom.xml` 文件中配置相关依赖。
+   - 启动器依赖 spring-boot-starter-web。
 
 3. 创建与前端请求交互的控制器包 `controller`。
 
    - 使用**2种**不同的注解实现。
 
-4. 在 `controller` 包下创建与`/user`请求交互的类`UserController`。
+4. 在 `controller` 包下创建与`/user`请求交互的用户处理器`UserController`。
 
 5. 在 `UserController` 类内编写`get()`请求方法。
 
@@ -105,7 +106,7 @@ server.port=8888
 
 ### 实现过程
 
-[有一个类型为基本数据类型或String的参数传入的GET请求。](GET请求-有参单个&实体类返回值.md)
+[有一个类型为基本数据类型或String的参数传入的GET请求。](GET请求-有参&实体类返回值.md)
 
 
 
@@ -148,7 +149,7 @@ server.port=8888
 
 ### 实现过程
 
-[编写POST请求](POST请求-有参单个&实体类返回值.md)。
+[编写POST请求](POST请求-有参&实体类返回值.md)。
 
 
 ## 优化：业务逻辑拆分

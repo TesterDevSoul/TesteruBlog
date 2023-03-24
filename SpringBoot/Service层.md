@@ -30,3 +30,24 @@
 
 
 
+## @Service
+用于标记一个类是一个服务（Service）。通常，@Service注解用于标记一个类是业务逻辑层（Service Layer）的实现类，例如：
+
+语法
+属性
+示例
+## @Autowired
+语法
+属性
+示例
+## @Primary
+语法
+属性
+示例
+## @Qualifier
+
+语法
+属性
+示例
+
+![](https://cdn.jsdelivr.net/gh/TesterDevSoul/blog_pic/springboot/20230323193716.png)
