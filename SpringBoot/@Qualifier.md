@@ -29,14 +29,18 @@ private MyBean myBean;
 `beanName`默认为注入类的名称首字母小写。
 
 
+当有多个相同类型的 bean 时，最好使用 @Qualifier 来避免歧义。
+
+注意，`@Qualifier` 注释的值与我们的 MyBean 实现类上的 @Service注释中声明的名称匹配。
+
 
 ## 需求
 
-假设我们有一个接口 `UserService` 和它的两个实现类 `UserServiceImpl1` 和 `UserServiceImpl2`，它们都被注入到了一个 `Controller` 类中。
+假设我们有一个接口`UserService` 和它的两个实现类 `UserServiceImpl1` 和 `UserServiceImpl2`，它们都被注入到了一个`Controller`类中。
 
 ### 实现
 
-由于这两个实现类都是 `UserService` 的实现类，因此在`Controller`中无法区分要使用哪一个实现类，因此需要使用 `@Qualifier` 注解来区分。
+由于这两个实现类都是`UserService`的实现类，因此在`Controller`中无法区分要使用哪一个实现类，因此需要使用`@Qualifier`注解来区分。
 
 #### 1. 接口创建
 

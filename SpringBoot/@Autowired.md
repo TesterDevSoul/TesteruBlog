@@ -71,3 +71,43 @@ public class UserController {
 在这个示例代码中，我们在 `UserController` 类中定义了一个 `REST` 接口，它通过 `@Autowired` 注解将 `userService` 属性自动装配到 `UserService` 类型的 `Bean` 对象上。
 
 在`getUser()`方法中，我们调用 `userService`对象中的`getUserById()`方法，从而获取指定`ID`的用户信息，并将其转换为`DTO`对象返回给客户端。
+
+
+## 注意
+
+使用`@Autowired`注入成员变量的好处是可以**省略构造方法**或者**`setter`方法**，使代码更加简洁易懂，提高了开发效率。此外，注入的成员变量可以直接访问，不需要再通过方法来获取。
+
+然而，过多的直接注入成员变量可能会导致代码可读性降低，因为它使依赖关系变得不明显。
+
+此外，使用`@Autowired`注入成员变量可能会导致代码的可测试性下降，因为测试过程中无法控制注入的对象。因此，最好将`@Autowired`注入的对象声明为`private`，同时提供**构造方法**或 **`setter`方法**，以便进行**依赖注入**和**测试**。
+
+
+
+### 构造方法
+```java
+private final SomeService someService;
+
+@Autowired
+public AnotherService(@Qualifier("someServiceImpl1") SomeService someService) {
+    this.someService = someService;
+}
+```
+### setter方法
+
+@Autowired注解可以通过setter方法来进行依赖注入。这种方式的好处是可以更加灵活地进行注入，因为可以根据不同的情况来调用不同的setter方法进行注入。此外，这种方式也更容易进行测试，因为可以通过setter方法来注入不同的mock对象进行测试。
+
+
+```java
+@Service
+public class UserServiceImpl implements UserService {
+
+    private UserRepository userRepository;
+
+    @Autowired
+    public void setUserRepository(@Qualifier("userService1Impl") UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    // 其他方法省略...
+}
+```
