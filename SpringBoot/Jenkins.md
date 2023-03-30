@@ -16,6 +16,9 @@
 - [d] 通过docker进入到对应Jenkins容器，在容器内进行Jenkins.sh文件编写
 ```shell
 docker exec -u root  -it myjenkins  bash
+
+apt-get update
+apt-get install vim
 vi /usr/local/bin/jenkins.sh
 ```
 
