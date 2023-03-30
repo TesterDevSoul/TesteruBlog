@@ -7,6 +7,11 @@
 ## 插件导入
 
 ```xml
+<properties>
+    <mysql.version>8.0.32</mysql.version>
+    <tk.version>4.2.2</tk.version>
+</properties>
+
 <dependency>
     <groupId>tk.mybatis</groupId>
     <artifactId>mapper-spring-boot-starter</artifactId>
