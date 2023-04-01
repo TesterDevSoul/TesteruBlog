@@ -30,7 +30,7 @@ exec java -Duser.home="$JENKINS_HOME" -Dhudson.security.csrf.GlobalCrumbIssuerCo
 ```
 重启jenkins容器使设置生效
 ```shell
-[root@vms9 ~]# docker restart jenkins
+[root@vms9 ~]# docker restart myjenkins
 ```
 2、系统设置中和 jenkins 地址一致
 
